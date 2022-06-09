@@ -2,14 +2,13 @@
 class UserController extends BaseController
 {
     /**
-     * "/user/list" Endpoint - Get list of users
+     * "/ventas/list" Endpoint - Get list ventas
      */
     public function listAction()
     {
         $strErrorDesc = '';
         $requestMethod = $_SERVER["REQUEST_METHOD"];
         $arrQueryStringParams = $this->getQueryStringParams();
-        //print_r($arrQueryStringParams);exit;
         if (strtoupper($requestMethod) == 'GET') {
             try {
                 $userModel = new UserModel();
@@ -29,17 +28,13 @@ class UserController extends BaseController
                         "clientes_asignados" => $value['cliente_asignados'],
                         "total_pedidos" => $value['total_pedido'],
                         "clientes" => $this->listClienteAction($id_asesor)
-                        //"detalle_pedidos" => $arrPedido            
                     ];
-
-                    //print_r($arrCliente[$i]["id_cliente"]);
-                    //print_r($arrPedido);
                     
                 }
 
                 $responseData = json_encode($result);
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $strErrorDesc = $e->getMessage().'Ocurrio un error!';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {

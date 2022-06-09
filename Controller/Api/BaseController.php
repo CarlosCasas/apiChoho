@@ -29,8 +29,6 @@ class BaseController
      */
     protected function getQueryStringParams()
     {
-        //parse_str($_SERVER['QUERY_STRING'],$query);
-        //print_r($query['codigo']);
         parse_str($_SERVER['QUERY_STRING'], $query);
         return $query['codigo'];
     }
